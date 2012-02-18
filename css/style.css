@@ -1,1 +1,18 @@
 /* styles! */
+
+body {
+margin: auto;
+}
+.entry, .entry img {
+border-radius: 50px;
+}
+.entry {
+border: 2px solid transparent;
+margin: 8px;
+cursor: pointer;
+width: 100px;
+height: 100px;
+}
+.selected {
+border: 2px solid blue;
+}
