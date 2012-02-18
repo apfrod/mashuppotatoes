@@ -14,14 +14,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
+
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+from google.appengine.ext.webapp import util, template
 
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        self.response.out.write('<!DOCTYPE html><head><title>Pusher Test</title><script src="http://js.pusher.com/1.11/pusher.min.js" type="text/javascript"></script><script type="text/javascript">' \
-            'Pusher.log = function(message) {if (window.console && window.console.log) window.console.log(message);};WEB_SOCKET_DEBUG = true;var pusher = new Pusher("db86cd103d83f97e5a29");var channel = pusher.subscribe("test_channel");channel.bind("my_event", function(data) {alert(data);});</script></head>')
+        template_values = {
+        }
+        
+        path = os.path.join(os.path.dirname(__file__), 'app.html')
+        self.response.out.write(template.render(path, template_values))
+        #self.response.out.write('<!DOCTYPE html><head><title>Pusher Test</title><script src="http://js.pusher.com/1.11/pusher.min.js" type="text/javascript"></script><script type="text/javascript">' \
+        #    'Pusher.log = function(message) {if (window.console && window.console.log) window.console.log(message);};WEB_SOCKET_DEBUG = true;var pusher = new Pusher("db86cd103d83f97e5a29");var channel = pusher.subscribe("test_channel");channel.bind("my_event", function(data) {alert(data);});</script></head>')
 
 
 def main():
