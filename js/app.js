@@ -12,6 +12,7 @@ $(document).ready(function(){
 	}
 
 function game(){
+	$('#entry_holder').empty();
 	var entries = new Array();
 	// get 4 random entries
 	for (var i = 0; i <5; i++){
@@ -28,6 +29,18 @@ function game(){
 	// put related_name as param!
 	// push it on the list
 	// entries.push(result);
+	// shuffle the array?!
+
+	var select_count = 0;
+	function select_entry(){
+		if (select_count < 2){
+		$(this).addClass('selected');
+		select_count++;
+		}else{
+		// send your turn to the server
+		console.log('turn over!');
+		}
+	}
 
 	// draw the list items to the screen
 	$.each(entries, function(i, item){
@@ -35,7 +48,10 @@ function game(){
 		var image_url = 'http://placekitten.com/100/100';
 		var img = $('<img/>');
 		img.attr('src', image_url);
-		$('body').append(img);
+		var div = $('<div class="entry"/>');
+		div.click(select_entry);
+		div.append(img);
+		$('#entry_holder').append(div);
 	});
 }
 game();
